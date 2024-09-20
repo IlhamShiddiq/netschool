@@ -1,0 +1,34 @@
+﻿# Compiled files
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+
+# Log files
+*.log
+
+# NuGet
+packages/
+*.nupkg
+*.snupkg
+
+# Publish
+[Pp]ublish/
+
+# Build Results
+artifacts/
+
+# Rider
+.idea/
+*.sln.docstates
+
+# Visual Studio Code
+.vscode/
+
+# Other generated files
+*.generated.cs
+
+# macOS
+.DS_Store

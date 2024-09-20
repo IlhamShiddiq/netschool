@@ -1,0 +1,6 @@
+@netschool_HostAddress = http://localhost:5105
+
+GET {{netschool_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
