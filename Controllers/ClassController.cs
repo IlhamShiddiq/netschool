@@ -1,58 +1,56 @@
-﻿namespace netschool.Controllers;
-
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-
+﻿using Microsoft.AspNetCore.Mvc;
 using netschool.Models;
 using netschool.Services;
 
-[ApiController]
-[Route("api/students")]
-public class StudentController : ControllerBase
-{
-    private StudentService _studentService;
+namespace netschool.Controllers;
 
-    public StudentController()
+[ApiController]
+[Route("api/classes")]
+public class ClassController
+{
+    private ClassService _classService;
+
+    public ClassController()
     {
-        _studentService = new StudentService();
+        _classService = new ClassService();
     }
     
     [HttpGet]
-    public ActionResult<IEnumerable<Student>> GetAll()
+    public ActionResult<IEnumerable<Class>> GetAll()
     {
-        List<Student> students = _studentService.getAll();
-            
+        List<Class> classes = _classService.GetAll();
+        
         return new JsonResult(
             new {
                 success = true,
                 message = "Get Data Success",
                 data = new {
-                    students = students 
+                    classes
                 }
             }
         );
     }
-    
+
     [HttpGet("{id}")]
-    public ActionResult<IEnumerable<Student>> GetById(int id)
+    public ActionResult<IEnumerable<Class>> GetById(int id)
     {
-        Student student = _studentService.FindById(id);
-            
+        Class classData = _classService.FindById(id);
+        
         return new JsonResult(
             new {
                 success = true,
                 message = "Get Data Success",
                 data = new {
-                    student
+                    @class = classData
                 }
             }
         );
     }
     
     [HttpPost]
-    public ActionResult Create(Student student)
+    public ActionResult Create(Class classData)
     {
-        _studentService.Store(student);
+        _classService.Store(classData);
         
         return new JsonResult(
             new {
@@ -61,12 +59,12 @@ public class StudentController : ControllerBase
             }
         ) { StatusCode = StatusCodes.Status201Created };
     }
-    
+
     [HttpPut("{id}")]
-    public ActionResult Update(int id, Student updatedStudent)
+    public ActionResult Update(int id, Class classData)
     {
-        updatedStudent.Id = id;
-        _studentService.Update(updatedStudent);
+        classData.Id = id;
+        _classService.Update(classData);
         
         return new JsonResult(
             new {
@@ -79,8 +77,8 @@ public class StudentController : ControllerBase
     [HttpDelete("{id}")]
     public ActionResult Delete(int id)
     {
-        Student student = _studentService.FindById(id);
-        _studentService.Delete(student);
+        Class data = _classService.FindById(id);
+        _classService.Delete(data);
         
         return new JsonResult(
             new {

@@ -10,6 +10,8 @@ public class DatabaseContext
         public DbSet<Student> Students { get; set; }
         
         public DbSet<Teacher> Teachers { get; set; }
+        
+        public DbSet<Class> Classes { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
